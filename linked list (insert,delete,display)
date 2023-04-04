@@ -1,0 +1,100 @@
+// insert, delete,display
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+	int data;
+	struct node *next;
+};
+typedef struct node NODE;
+NODE *head,*tail;
+void insert(NODE *NN)
+{
+	if(head==NULL && tail==NULL)
+	{
+		head=NN;
+		tail=NN;
+	}
+	else 
+	{
+		tail->next=NN;
+		tail=NN;
+	}
+}
+void display()
+{
+	if(head==NULL && tail==NULL)
+	{
+		printf("Node is empty\n");
+	}
+	else 
+	{
+		NODE *temp;
+		temp=head;
+		while(temp)
+		{
+			printf("%d %d %d\n",temp,temp->data,temp->next);
+			temp=temp->next;
+		}
+		printf("\n");
+	}
+}
+void delete()
+{
+	NODE *temp;
+	if(head==NULL && tail==NULL)
+	{
+		return -1;
+	}
+	else if(head==tail)
+	{
+		head=NULL;
+		tail=NULL;
+	}
+	else 
+	{
+		temp=head;
+		while(temp->next->next)
+		{
+			temp=temp->next;
+		}
+		temp->next=NULL;
+		tail=temp;
+	}
+}
+int main()
+{
+	NODE *NN;
+	int n,ch;
+	scanf("%d",&n);
+	while(1)
+	{
+		printf("1.insert 2.delete 3.display 4.exits");
+		scanf("%d",&ch);
+		if(ch==1)
+		{
+			//insert
+			int val;
+			scanf("%d",&val);
+			NN=(NODE*)malloc(sizeof(NODE));
+			NN->data=val;
+			NN->next=NULL;
+			insert(NN);
+				
+		}
+		else if(ch==2)
+		{
+			//delete
+			delete();
+		}
+		else if(ch==3)
+		{
+			//display
+			display();
+		}
+		else 
+		{
+			break;
+		}
+	}
+	
+}
