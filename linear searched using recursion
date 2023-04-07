@@ -1,0 +1,29 @@
+// linear searched using recursion
+# include<stdio.h>
+int linear(int *a,int i,int n, int se);
+int main()
+{
+ int n,i=0;
+ scanf("%d",&n);
+ int a[n];
+ for(int i=0; i<n; i++)
+ {
+ 	scanf("%d",&a[i]);
+ }
+ int se;
+ scanf("%d",&se);
+ int res=linear( a, i, n,  se);
+ printf("%d",res);
+}
+int linear(int *a,int i,int n, int se)
+{
+	if(i==n)
+	{
+		return -1;
+	}
+	if(a[i]==se)
+	{
+		return i;
+	}
+	linear( a, i+1, n,  se);
+}
