@@ -1,0 +1,104 @@
+#include<stdio.h>
+#include<stdlib.h>
+int n;
+struct stack{
+	int data;
+	struct stack *next;
+};
+typedef struct stack STD;
+STD *top=NULL,*temp; 
+void push(STD * NN)
+{
+	temp=NULL;
+ if(top==NULL)
+ {
+ 	top=NN;
+ }
+ else
+ {
+ 	NN->next=top;
+ 	top=NN;
+ }
+ 	
+}
+void pop()
+{
+	temp=top;
+	if(top==NULL)
+	{
+		printf("The stack is empty\n");
+	}
+	else 
+	{
+		printf("%d\n",top->data);
+		top=top->next;
+		free(temp);
+		
+    }
+}
+void display()
+{
+	STD*temp;
+	temp=top;
+	if(top==NULL)
+	{
+		printf("stack is empty\n");
+	}
+	else
+	{
+	  while(temp)
+	  {
+	  	printf("%d\n",temp->data);
+	  	temp=temp->next;
+	  }
+	}
+}
+void peek()
+{
+	if(top==NULL)
+	{
+		printf("The stack is empty");
+	}
+	else 
+	{
+		printf("%d\n",top->data);
+	}
+}
+int main()
+{
+	STD *NN;
+	while(1)
+	{
+		int ch;
+		printf("1. push 2. pop 3. display 4. peek 5.exist");
+		scanf("%d",&ch);
+		if(ch==1)
+		{
+			//push
+			int val;
+	        scanf("%d",&val);
+		   NN=(STD*)malloc(sizeof(STD));
+		   NN->data=val;
+		   NN->next=NULL;
+		    push(NN);
+		}
+		else if(ch==2)
+		{
+			//pop
+			pop();
+		}
+		else if(ch==3)
+		{
+			//display
+			display();
+		}
+		else if(ch==4)
+		{
+			peek();
+		}
+		else 
+		{
+			break;
+		}
+	}
+}
