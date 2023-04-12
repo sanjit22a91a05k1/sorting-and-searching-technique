@@ -1,0 +1,95 @@
+// implemention of queue using linked list 
+#include<stdio.h>
+#include<stdlib.h>
+struct queue{
+	int data;
+	struct queue *next;
+};
+typedef struct queue STD;
+STD *front=NULL , *rear=NULL, *temp;
+void enque(STD *NN)
+{
+	if(front==NULL && rear==NULL)
+	{
+		front=NN;
+		rear=NN;
+	}
+	else 
+	{
+		rear->next=NN;
+		rear=NN;
+	}
+}
+void deque()
+{
+		
+	if(front==NULL && rear==NULL)
+	{
+		printf("The queue is Empty\n");
+	}
+	else if(front ==rear)
+	{
+		front=NULL;
+		rear=NULL;
+	}
+	else 
+	{	
+	 temp=front;
+	 printf("%d\n",front->data);
+	 front=front->next;
+	 free(temp);
+	}
+}
+void display()
+{
+	temp=front;
+	if(front==NULL && rear==NULL)
+	{
+		printf("Queue is empty\n");
+	}
+	else 
+	{
+	while(temp)
+	{
+		printf("%d\n",temp->data);
+		temp=temp->next;
+	}
+    }
+}
+
+int main()
+{
+	STD *NN;
+	char ch;
+	while(1)
+	{
+		printf("1.enque 2. deque 3.dispaly 4.exists");
+		scanf("%d",&ch);
+		if(ch==1)
+		{
+			// enque
+			int val;
+			scanf("%d",&val);
+			NN=(STD*)malloc(sizeof(STD));
+			NN->data=val;
+			NN->next=NULL;
+			enque(NN);
+			
+		}
+		else if(ch==2)
+		{
+			// delete
+			deque();
+		}
+		else if(ch==3)
+		{
+			// dispaly
+			display();
+		}
+		else 
+		{
+			break;
+		}
+	}
+	
+}
