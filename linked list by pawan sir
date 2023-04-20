@@ -1,0 +1,187 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+	int data;
+	struct node *next;
+};
+typedef struct node NODE;
+NODE *head=NULL, *temp;
+void Insertion_at_head(NODE *NN)
+{
+	if(head==NULL)
+	{
+		head=NN;
+	}
+	else
+	{
+		NN->next=head;
+		head=NN;
+	}
+}
+void Insertion_at_end(NODE *NN)
+ {
+	if(head==NULL)
+	{
+		head=NN;
+	}
+	else 
+	{
+		temp=head;
+		while(temp->next)
+		{
+			temp=temp->next;	
+		}
+			temp->next=NN;
+	}
+}
+void Deletion_at_head()
+{
+	if(head==NULL)
+	{
+		printf("No Nodes\n");
+	}
+	else 
+	{
+		temp=head;
+		head=head->next; // second node is new head
+		printf("%d is deleted\n",temp->data);
+		free(temp);
+	}
+}
+void Deletion_at_end()
+{
+	if(head==NULL)
+	{
+		printf("No node\n");
+	}
+	else if(head->next==NULL)
+	{	NODE *dn=head;
+		printf("%d is deleted node \n",dn->data);
+		head =NULL;
+		free(dn);
+	}
+	else 
+	{
+		NODE *dn;
+		temp=head;
+		dn=head;
+		while(temp->next->next)
+		{
+			temp=temp->next;
+		}
+		dn=temp->next;
+		printf("%d is deleted \n",dn->data);
+		temp->next=NULL;
+		free(dn);
+	}
+}
+void insertion_at_position(NODE *NN, int pos)
+{
+	int c=1;
+	if (pos == 1 || head == NULL) {
+		if (head == NULL) {
+			head = NN;
+		}
+		else {
+			NN -> next = head;
+			head = NN;
+		}
+	}
+	else
+	{
+		temp=head;
+		while(c<pos-1)
+		{
+			temp=temp->next;
+			c++;
+		}
+	      	NN->next=temp->next;
+		    temp->next=NN;
+	}
+}
+void display()
+{
+	temp=head;
+	if(head==NULL)
+	{
+		printf("Node is empty\n");
+	}
+	else 
+	{
+		while(temp)
+		{
+			printf("%d ",temp->data);
+			temp=temp->next;
+		}
+		printf("\n");
+	}
+}
+int main()
+{
+   NODE	*NN;
+   int ch;
+   while(1)
+   {
+   	printf(" 1.Insertion_at_head 2.Insertion_at_end 3. Deletion_at_head 4. Deletion_at_end 5. insertion_at_position 6.display 7.exist\n");
+   	scanf("%d",&ch);
+   	if(ch==1)
+   	{
+   		//Insertion_at_head
+   		NN=(NODE*)malloc(sizeof(NODE));
+		int val;
+		printf("Enter the value to be inserted\n");
+		scanf("%d",&val);
+		NN->data=val;
+		NN->next=NULL;
+		Insertion_at_head(NN);
+	}
+	else if(ch==2)
+	{
+		//Insertion_at_end
+		NN=(NODE*)malloc(sizeof(NODE));
+		int val;
+		printf("Enter the value to be inserted\n");
+		scanf("%d",&val);
+		NN->data=val;
+		NN->next=NULL;
+		Insertion_at_end(NN);
+		
+	}
+	else if(ch==3)
+	{
+	//Deletion_at_head
+	Deletion_at_head();	
+	}
+	else if(ch==4)
+	{
+		//Deletion_at_end
+		Deletion_at_end();
+		
+	}
+	else if(ch==5)
+	{
+		//insertion_at_position
+		int pos;
+		printf("Enter a position to insert\n");
+		scanf("%d",&pos);
+		NN=(NODE*)malloc(sizeof(NODE));
+		int val;
+		printf("Enter the value to be inserted\n");
+		scanf("%d",&val);
+		NN->data=val;
+		NN->next=NULL;
+		insertion_at_position(NN,pos);
+	}
+	else if(ch==6)
+	{
+		//display
+		display();
+		
+	}
+	
+	else 
+	{
+		break;
+	}
+   }
+}
