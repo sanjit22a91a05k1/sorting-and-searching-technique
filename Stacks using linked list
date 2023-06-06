@@ -1,0 +1,93 @@
+// stack using linked list
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+	int data;
+	struct node *next;
+};
+typedef struct node NODE;
+NODE * head=NULL;
+NODE *NN;
+NODE *temp;
+NODE *prev;
+ void push()
+ {
+ 	temp=head;
+ 	int val;
+	scanf("%d",&val);
+	NN=(NODE *)malloc(sizeof(NODE));
+	NN->data=val;
+	NN->next=NULL;
+	if(head==NULL)
+	{
+		head=NN;
+	}
+	else
+	{
+	while(temp->next!=NULL)
+	{
+		temp=temp->next;
+	}
+	temp->next=NN;
+ }
+}
+void pop()
+{
+	temp=head;
+	if(head==NULL)
+	{
+		printf("The Node is empty\n");
+	}
+	else
+	{
+		while(temp->next!=NULL)
+		{
+			prev=temp;
+			temp=temp->next;
+		}
+		printf("%d\n",temp->data);
+		prev->next=NULL;
+		free(temp);
+	}
+}
+void display()
+ {
+ 	  temp = head;
+ 
+    if (head == NULL)
+    {
+        printf("\nStack Underflow\n");
+        return;
+    }
+    while (temp != NULL)
+    {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+ }
+int main()
+{
+	int ch;
+	while(1)
+	{
+		printf("1. push 2. pop 3. display  4.exits");
+		scanf("%d",&ch);
+		if(ch==1)
+		{
+			push();
+			
+		}
+		else if(ch==2)
+		{
+		   pop();
+		}
+		else if (ch==3)
+		{
+			display();
+		}
+		else
+		{
+			break;
+		}
+	}
+}
